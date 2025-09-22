@@ -1,44 +1,43 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const characterList = document.getElementById("character-bar");
-  const characterName = document.getElementById("character-name");
-  const characterImage = document.getElementById("character-image");
-  const characterVotes = document.getElementById("vote-count");
-  const voteForm = document.getElementById("votes-form");
+  const namesList = document.getElementById("names");
+  const animalName = document.getElementById("animal-name");
+  const animalImg = document.getElementById("animal-img");
+  const animalVotes = document.getElementById("animal-votes");
+  const voteForm = document.getElementById("vote-form");
+  const voteInput = document.getElementById("vote-input");
 
-  
+  let currentAnimal = null;
+
+  // Fetch animals
   fetch("http://localhost:3000/characters")
-    .then((res) => res.json())
-    .then((characters) => {
-      characters.forEach((character) => {
-        const span = document.createElement("span");
-        span.textContent = character.name;
-        span.addEventListener("click", () => {
-          showCharacter(character);
-        });
-        characterList.appendChild(span);
+    .then(res => res.json())
+    .then(data => {
+      data.forEach(animal => {
+        const li = document.createElement("li");
+        li.textContent = animal.name;
+        li.addEventListener("click", () => showAnimal(animal));
+        namesList.appendChild(li);
       });
     });
 
-  function showCharacter(character) {
-    characterName.textContent = character.name;
-    characterImage.src = character.image;
-    characterVotes.textContent = character.votes;
-
-    voteForm.onsubmit = (e) => {
-      e.preventDefault();
-      const input = e.target.votes.value;
-      character.votes += parseInt(input);
-      characterVotes.textContent = character.votes;
-      e.target.reset();
-
-      
-      fetch(`http://localhost:3000/characters/${character.id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ votes: character.votes }),
-      });
-    };
+  function showAnimal(animal) {
+    currentAnimal = animal;
+    animalName.textContent = animal.name;
+    animalImg.src = animal.image;
+    animalImg.alt = animal.name;
+    animalVotes.textContent = `Votes: ${animal.votes}`;
   }
+
+  // Add votes
+  voteForm.addEventListener("submit", e => {
+    e.preventDefault();
+    if (!currentAnimal) return;
+
+    const votesToAdd = parseInt(voteInput.value);
+    if (!isNaN(votesToAdd)) {
+      currentAnimal.votes += votesToAdd;
+      animalVotes.textContent = `Votes: ${currentAnimal.votes}`;
+    }
+    voteInput.value = "";
+  });
 });
