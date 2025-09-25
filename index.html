@@ -2,41 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Characters List</title>
+  <title>Flatacuties — Vote for the Cutest!</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Characters</h1>
+  <h1>Flatacuties — Vote for the Cutest!</h1>
 
-  <div id="character-1">
-    <h2>Mr. Cute</h2>
-    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Mr. Cute">
-    <p>Votes: 0</p>
+  <!-- Character names list -->
+  <ul id="names">
+    <li data-id="1" data-image="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" data-votes="0">Mr. Cute</li>
+    <li data-id="2" data-image="https://media.giphy.com/media/2A75RyXVzzSI2bx4Gj/giphy.gif" data-votes="0">Mx. Monkey</li>
+    <li data-id="3" data-image="https://media2.giphy.com/media/20G9uNqE3K4dRjCppA/source.gif" data-votes="0">Ms. Zebra</li>
+    <li data-id="4" data-image="http://bestanimations.com/Animals/Mammals/Cats/Lions/animated-lion-gif-11.gif" data-votes="0">Dr. Lion</li>
+    <li data-id="5" data-image="https://media.giphy.com/media/ALalVMOVR8Qw/giphy.gif" data-votes="0">Mme. Panda</li>
+  </ul>
+
+  <!-- Selected animal details -->
+  <div id="details">
+    <h2 id="animal-name">Select an animal </h2>
+    <img id="animal-img" src="" alt="" width="200">
+    <p id="animal-votes">Votes: 0</p>
+
+    <!-- Voting form -->
+    <form id="vote-form">
+      <input id="vote-input" type="number" placeholder="Enter votes">
+      <button type="submit">Vote</button>
+    </form>
   </div>
 
-  <div id="character-2">
-    <h2>Mx. Monkey</h2>
-    <img src="https://media.giphy.com/media/2A75RyXVzzSI2bx4Gj/giphy.gif" alt="Mx. Monkey">
-    <p>Votes: 0</p>
-  </div>
-
-  <div id="character-3">
-    <h2>Ms. Zebra</h2>
-    <img src="https://media2.giphy.com/media/20G9uNqE3K4dRjCppA/source.gif" alt="Ms. Zebra">
-    <p>Votes: 0</p>
-  </div>
-
-  <div id="character-4">
-    <h2>Dr. Lion</h2>
-    <img src="http://bestanimations.com/Animals/Mammals/Cats/Lions/animated-lion-gif-11.gif" alt="Dr. Lion">
-    <p>Votes: 0</p>
-  </div>
-
-  <div id="character-5">
-    <h2>Mme. Panda</h2>
-    <img src="https://media.giphy.com/media/ALalVMOVR8Qw/giphy.gif" alt="Mme. Panda">
-    <p>Votes: 0</p>
-  </div>
   <script src="scrip.js"></script>
 </body>
 </html>
